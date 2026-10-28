@@ -1,78 +1,76 @@
-# CupidOS | Autonomous Agent-to-Agent Dating Protocol
+# CupidOS | 25-Person Autonomous Agent Dating Simulation
 
 > **"Don't waste time swiping. Let your agent date on your behalf."**
 
-CupidOS is a full-stack, autonomous dating avatar simulation platform. It ingests public footprints (via **Apify Store API** for Instagram and LinkedIn, or Wikipedia/Twitter links), analyzes psychological profiles, emotional needs, and dealbreakers, and sends autonomous AI agents out on real dates to test chemistry before humans ever meet.
+CupidOS is a fully working, responsive autonomous dating avatar simulation platform. It ingests public footprints (via **Apify Store API** for Instagram and LinkedIn), constructs structured **5-layer personas**, runs simulated dates in visual environments with synchronized actions and inner monologues, and produces explainable **Bayesian shrunk compatibility rankings**.
 
 ---
 
-## 🚀 Key Features Walkthrough
-
-### 1. Ingestion & Apify Store Integration ("The Mind Reader")
-* **Apify Actors Integration**:
-  - `apify/instagram-profile-scraper`: Scrapes bio, recent post captions, aesthetic tags, and engagement cadence.
-  - `curious_coder/linkedin-profile-scraper`: Scrapes experience, career arc, skills, intellectual interests, and summary.
-* **Multi-Stage Psychometric Reading**:
-  1. *Public Footprint & Lexical Extraction*
-  2. *Big Five Trait Calibration* (Openness, Conscientiousness, Extraversion, Agreeableness, Neuroticism)
-  3. *Core Needs & Emotional Safety Triggers*
-  4. *Micro-Hobbies & Aesthetic Fingerprints*
-  5. *Tripwire Dealbreakers & Green Flags Formulation*
-  6. *Autonomous Agent Core Directive Generation*
-
-### 2. The Agent Profile Dossier ("The Analysis Card")
-* **Archetype & Love Language**: Clear categorizations (e.g. *The Grounded Creative*, *The Philosophical Stoic*).
-* **Core Relationship Needs**: 4 explicit emotional and intellectual requirements uncovered by the agent.
-* **Discovered Hobbies**: Niche passions (e.g. vintage fashion archives, motorcycle mechanics, 80s indie cinema).
-* **Conversational & Flirtation Signature**: Cadence, humor style, and flirting mechanics.
-* **Autonomous Safety Protocol**: Secret green flags and absolute dealbreakers.
-* **Raw Agent Directive**: The synthesized system prompt instructing the agent how to act on their principal's behalf.
-
-### 3. The Live Date Simulator ("Watching Them Date")
-* **Authentic Date Venues**:
-  - *The Velvet Cellar* (Secret Speakeasy)
-  - *Greenwich Vinyl & Espresso Loft*
-  - *Solstice Starlit Rooftop*
-  - *The Midnight Contemporary Gallery*
-* **Turn-by-Turn Dynamic Dialogue**:
-  - Spoken dialogue with nuanced personality, humor, and speech patterns.
-  - Expressive physical actions & stage directions (*takes a slow sip of the smoky mezcal, laughing quietly*).
-* **Live Cognitive Inner Monologue (The Brain Inspector)**:
-  - Watch the agent's real-time reasoning behind every turn!
-  - 🧠 *Radar / Observation*: Analyzing partner's tone, body language, and intent.
-  - 🛡️ *Dealbreaker Verification*: Checking if boundaries are respected.
-  - 🎯 *Tactical Next Move*: Strategy for the next response.
-* **Real-Time Dynamic Gauges**:
-  - Overall Chemistry %
-  - Banter & Humor Sync
-  - Intellectual Rapport
-  - Emotional Safety (95%+)
-* **Interactive Controls**:
-  - ▶️ Next Turn, ⏯️ Auto-Play (2.8s smooth pacing), ⏪ Previous Turn, ⏩ Fast-Forward to End.
-  - **User Whisper / Coach Mode**: Whisper advice to your agent in real-time (`"Ask them about their dog Noon!"`) and watch the agent seamlessly integrate it!
-
-### 4. Post-Date Debrief & Global Match Rankings
-* **Confidential Intelligence Letters**:
-  - Agent A writes a private memo to User A: verdict, top green flags, and watchouts.
-  - Agent B writes a private memo to User B.
-  - Recommendation for the real world (e.g. *"Say yes to a low-profile coffee date"*).
-* **Candidate Leaderboard**:
-  - Ranks all candidate suitors (Zendaya, Keanu Reeves, Taylor Swift, Pedro Pascal, Elon Musk, Billie Eilish).
-  - Sortable by Chemistry Score, Banter Score, and Second Date Probability.
-  - Direct "Simulate Date" button to test any pair in seconds!
+## 🎯 Overall Explanation (<200 Characters)
+> **"An autonomous agent dating simulator that scrapes public profiles into 5-layer personas, simulates visual dates with inner monologues, and produces explainable compatibility rankings."** *(195 chars)*
 
 ---
 
-## 🏃 Quick Start
+## 🛠️ Technical Stack: Instagram & LinkedIn Scraping
 
-### 1. Launch with Batch Script:
-Double-click `run_demo.bat` in this folder. It starts the local Python server and launches `http://localhost:8080` in your default browser.
+1. **Apify Store Actor Architecture:**
+   - **Instagram:** Powered by `apify/instagram-profile-scraper`. Extracts verified account status, bio text, follower/following counts, recent post captions, media tags, and engagement cadence.
+   - **LinkedIn:** Powered by `curious_coder/linkedin-profile-scraper`. Extracts current role, headline, summary, career arc, skills, and intellectual interests.
+2. **Backend API Gateway (`server.py`):**
+   - Python HTTP REST service exposing `POST /api/scrape/apify`.
+   - Accepts profile URLs and optional user Bearer token (`apify_api_...`) stored in `localStorage`.
+   - Invokes Apify's sync endpoint: `https://api.apify.com/v2/acts/{actorId}/run-sync-get-dataset-items?token={token}`.
+   - Graceful fallback: When running offline or without an API key, an intelligent synthesizer reconstructs the persona from verified profile structures so the system never crashes.
+3. **5-Layer Persona Construction:**
+   - **Layer A (Observed Facts):** Claims directly backed by scraped bio or captions with confidence $\ge 0.90$.
+   - **Layer B (Cautious Inferences):** Hypotheses marked with `"May enjoy..."` and confidence capped at $0.60$.
+   - **Layer C (Unknowns):** Explicit list of non-inferred private romantic goals and boundaries.
+   - **Layer D (Preferences):** Activity and venue preferences.
+   - **Layer E (Behavioral Policy):** System prompt constraints prohibiting hallucinations and enforcing respectful dialogue.
+4. **Venue Planner & Action Enums (Addendum Spec):**
+   - Venue Selection Algorithm: $\text{Score}(v) = 0.5 \times \text{PrefMatch} + 0.3 \times \text{Suitability} + 0.2 \times \text{DiversityBonus}$.
+   - Allowed Enums: `walk_to_table`, `sit`, `talk`, `listen`, `smile`, `laugh`, `gesture`, `stand_up`, `leave`.
+   - Turn Protocol: Subtitles, emotion, gaze, private ratings (1–5), and cognitive inner monologues.
+5. **Shrinkage Compatibility Scoring:**
+   - $S_{\text{raw}} = 0.30 \times \text{Interests} + 0.25 \times \text{Preferences} + 0.30 \times \text{Interaction} + 0.15 \times \text{Respect}$.
+   - $S_{\text{adj}} = c \cdot S_{\text{raw}} + (1 - c) \cdot \text{Median}(S_{\text{raw}})$, where $c$ is evidence coverage.
 
-### 2. Or Launch with Python directly:
+---
+
+## 🚀 How to Run the Project
+
+### 1. Instant 1-Click Launch (Windows)
+Double-click [`run_demo.bat`](file:///c:/Users/SURYA/Desktop/AD/run_demo.bat). It spins up the local Python server and opens `http://localhost:8080` in your default browser.
+
+### 2. Manual Terminal Launch
 ```powershell
 & "C:\Users\SURYA\AppData\Local\Programs\Python\Python312\python.exe" server.py
 ```
-Then visit `http://localhost:8080`.
+Open `http://localhost:8080`.
 
-### 3. Or Open Offline:
-Double-click `index.html` to run in any browser immediately (all data and synthesis engines are self-contained).
+### 3. Direct Browser Launch (Offline)
+Double-click [`index.html`](file:///c:/Users/SURYA/Desktop/AD/index.html) to open directly in Chrome, Edge, or Brave. All 25 personas and precomputed evaluations are bundled in [`cohort_data.js`](file:///c:/Users/SURYA/Desktop/AD/cohort_data.js).
+
+---
+
+## 📹 3-Minute YouTube Video Storyboard (For Recording)
+
+| Timestamp | Screen | What to Show & Say |
+| :--- | :--- | :--- |
+| **0:00 – 0:25** | **Tab 1: 25-Person Cohort** | Showcase the 25 live people extracted from the Apify Instagram dataset. Point out the verified tier tags, LinkedIn links, and Instagram profile references. |
+| **0:25 – 0:55** | **Tab 2: 5-Layer Persona** | Open Steven Bartlett or Priyanka Chopra. Walk through **Layer A (Observed Facts)** with claim IDs & confidence, **Layer B (Inferences)**, **Layer C (Explicit Unknowns)**, and **Layer D (Preferences)**. |
+| **0:55 – 1:45** | **Tab 3: Visual Date Room** | Start date between Steven & Priyanka. Show the 3D-styled avatars, action pills (`walk_to_table`, `sit`, `laugh`), subtitles, **private ratings (1–5)**, and the **Cognitive Inner Monologue**. |
+| **1:45 – 2:25** | **Tab 4: Match Rankings** | Show the full 24-candidate leaderboard ranked by shrunk score ($S_{\text{adj}}$). Explain the Bayesian shrinkage formula, top connection moments, and friction points. |
+| **2:25 – 3:00** | **Live Ingestion & Proof** | Paste a custom Instagram link into the top search bar, show the multi-stage scanner in action, and reload the page to prove persistence! |
+
+---
+
+## 🌐 GitHub Push Instructions
+
+The local Git repository is initialized and committed. To publish to GitHub:
+```bash
+git remote add origin https://github.com/<YOUR_USERNAME>/<YOUR_REPO_NAME>.git
+git branch -M main
+git push -u origin main
+```
+Ensure the repository visibility is set to **Public** on GitHub.
