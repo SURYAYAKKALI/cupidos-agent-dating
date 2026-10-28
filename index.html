@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CupidOS | Autonomous Agent-to-Agent Dating Protocol (25-Person Cohort)</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="app-header">
+    <div class="brand-wrapper">
+      <div class="brand-logo">✨</div>
+      <div class="brand-text">
+        <h1>CupidOS</h1>
+        <p>25-Person Autonomous Agent Dating Simulation</p>
+      </div>
+    </div>
+
+    <nav class="nav-tabs">
+      <button class="tab-btn active" data-tab="tab-cohort">
+        <span>👥</span> 1. Cohort & Ingest
+      </button>
+      <button class="tab-btn" data-tab="tab-profile">
+        <span>🧬</span> 2. 5-Layer Persona
+      </button>
+      <button class="tab-btn" data-tab="tab-date">
+        <span>🍸</span> 3. Visual Date Room
+      </button>
+      <button class="tab-btn" data-tab="tab-rankings">
+        <span>🏆</span> 4. Match Rankings (24 Candidates)
+      </button>
+    </nav>
+
+    <div class="header-status">
+      <div class="pulse-dot"></div>
+      <span class="status-text">25 Agents Online</span>
+      <button id="btn-quick-date" class="secondary-btn" style="margin-left: 0.5rem; padding: 0.45rem 0.9rem; font-size: 0.8rem;">
+        ⚡ Instant Date: Steven & Priyanka
+      </button>
+    </div>
+  </header>
+
+  <main class="main-content">
+
+    <!-- ========================================== -->
+    <!-- TAB 1: 25-PERSON COHORT & LIVE INGESTION   -->
+    <!-- ========================================== -->
+    <section id="tab-cohort" class="tab-panel active">
+      <div class="hero-banner">
+        <div class="hero-pill">✦ 25 Real Participants • Apify Instagram & LinkedIn Scraped</div>
+        <h2>Autonomous Representative Dating Simulation</h2>
+        <p>
+          Each person is represented by an AI agent grounded in real public footprints. 
+          Agents go on simulated dates in visual environments, and the system produces explainable, shrunk compatibility rankings.
+        </p>
+      </div>
+
+      <!-- Live Ingestion & Apify Store Scraper Bar -->
+      <div class="ingest-box">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+          <span style="font-weight: 700; font-size: 0.95rem; color: #fff;">🌐 Ingest Your Own Profile (Apify Store Scraper):</span>
+          <span style="font-size: 0.78rem; color: var(--accent-emerald);">● Apify Actors: instagram-scraper & linkedin-scraper</span>
+        </div>
+        <div class="input-group">
+          <input 
+            type="text" 
+            id="input-profile-source" 
+            class="url-input" 
+            placeholder="Paste Instagram or LinkedIn URL (e.g., https://instagram.com/steven or https://linkedin.com/in/...)" 
+            value="https://instagram.com/steven"
+          />
+          <button id="btn-start-reading" class="primary-btn">
+            <span>✨</span> Scrape & Synthesize Agent
+          </button>
+        </div>
+        <div style="display: flex; justify-content: space-between; font-size: 0.78rem; color: var(--text-muted); flex-wrap: wrap; gap: 0.5rem;">
+          <span>Supported: Instagram profiles, LinkedIn URLs, Wikipedia, or custom bios.</span>
+          <span>Data Compliance: Stored as links & atomic claims with evidence timestamps.</span>
+        </div>
+      </div>
+
+      <!-- Multi-Stage Scanning Telemetry Overlay -->
+      <div id="scanning-container" class="scanning-overlay">
+        <div class="scanner-radar">
+          <div id="scanner-progress-bar" class="scanner-progress-bar"></div>
+        </div>
+        <div class="scan-stage-name">
+          <span>🧠</span> <span id="scan-stage-title">Initializing Neural Scanner...</span>
+        </div>
+        <div id="scan-stage-detail" class="scan-stage-detail">
+          Calling Apify Actor dataset endpoint...
+        </div>
+        <div id="scan-terminal" class="terminal-stream">
+          <div>[SYSTEM] Ingestion hook connected to Apify Store stream...</div>
+        </div>
+      </div>
+
+      <!-- Cohort Overview Header & Filters -->
+      <div class="section-title">
+        <div>
+          <h3><span>👥</span> Finished Cohort Example: 25 Prominent Figures</h3>
+          <p style="font-size: 0.85rem; color: var(--text-secondary);">
+            Pre-run and saved to the database. Click any person to inspect their 5-Layer Persona or view their complete 24-candidate rankings!
+          </p>
+        </div>
+        <div style="display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap;">
+          <span style="font-size: 0.8rem; color: var(--text-muted);">Tier:</span>
+          <span class="badge-green" style="font-size: 0.75rem;">Consenting Real (25)</span>
+          <span class="badge-blue" style="font-size: 0.75rem;">Verified Public Data</span>
+        </div>
+      </div>
+
+      <!-- 25-Person Cards Grid -->
+      <div class="preset-grid" id="cohort-cards-grid">
+        <!-- Rendered dynamically by app.js from cohort_data.js -->
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- TAB 2: 5-LAYER PERSONA & EVIDENCE DOSSIER  -->
+    <!-- ========================================== -->
+    <section id="tab-profile" class="tab-panel">
+      <div class="section-title" style="margin-bottom: 1.5rem;">
+        <div>
+          <h3><span>🧬</span> 5-Layer Structured Persona Dossier</h3>
+          <p style="font-size: 0.85rem; color: var(--text-secondary);">
+            Grounded in atomic claims from public footprints. Strict separation between facts, cautious inferences, and unknowns.
+          </p>
+        </div>
+        <div style="display: flex; gap: 0.8rem; align-items: center; flex-wrap: wrap;">
+          <label style="font-size: 0.8rem; color: var(--text-muted);">Select Person:</label>
+          <select id="select-dossier-profile" class="custom-select"></select>
+          <button id="btn-deploy-to-date" class="primary-btn">
+            <span>🍸</span> Go on a Live Date ➔
+          </button>
+        </div>
+      </div>
+
+      <div class="profile-dossier-grid">
+        <!-- Left Column: Core Persona Summary Card -->
+        <div class="dossier-card profile-hero-card">
+          <img id="dossier-avatar" class="profile-large-avatar" src="" alt="Avatar">
+          <h2 id="dossier-name">Steven Bartlett</h2>
+          <div id="dossier-role" class="profile-role-tag">Founder, Flight Story & Podcaster</div>
+          <div id="dossier-archetype" class="archetype-banner">The Strategic Storyteller</div>
+          
+          <p id="dossier-bio" style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.25rem; text-align: center;">
+            Bio summary...
+          </p>
+
+          <!-- External Reference Links -->
+          <div style="display: flex; justify-content: center; gap: 0.6rem; margin-bottom: 1.25rem; flex-wrap: wrap;">
+            <a id="dossier-link-instagram" href="#" target="_blank" class="secondary-btn" style="padding: 0.35rem 0.75rem; font-size: 0.75rem;">
+              📸 Instagram Profile
+            </a>
+            <a id="dossier-link-linkedin" href="#" target="_blank" class="secondary-btn" style="padding: 0.35rem 0.75rem; font-size: 0.75rem;">
+              💼 LinkedIn Profile
+            </a>
+          </div>
+
+          <!-- Metadata Badges -->
+          <div style="display: flex; justify-content: space-around; background: var(--bg-secondary); padding: 0.75rem; border-radius: var(--radius-md); margin-bottom: 1.5rem;">
+            <div>
+              <div style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase;">MBTI</div>
+              <div id="dossier-mbti" style="font-weight: 700; color: #fff;">ENTJ</div>
+            </div>
+            <div style="border-left: 1px solid var(--border-subtle);"></div>
+            <div>
+              <div style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase;">Coverage Tier</div>
+              <div id="dossier-coverage-tier" style="font-weight: 700; color: #34d399;">Rich (88%)</div>
+            </div>
+            <div style="border-left: 1px solid var(--border-subtle);"></div>
+            <div>
+              <div style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase;">Tier</div>
+              <div style="font-weight: 700; color: var(--accent-gold); font-size: 0.8rem;">Consenting Real</div>
+            </div>
+          </div>
+
+          <!-- Core Interest Tags -->
+          <h4 style="text-align: left; font-size: 0.85rem; color: #fff; margin-bottom: 0.6rem;">Verified Interests</h4>
+          <div class="tags-container" id="dossier-interests-tags">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+        <!-- Right Column: The 5 Layers (Blueprint Section 4) -->
+        <div class="analysis-sections">
+
+          <!-- Layer A: Observed Facts -->
+          <div class="analysis-block">
+            <div class="block-title">
+              <span>📌</span> Layer A — Observed Facts (Directly Supported Claims)
+            </div>
+            <div class="claims-list" id="dossier-layer-a-claims">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+
+          <!-- Layer B: Cautious Inferences -->
+          <div class="analysis-block">
+            <div class="block-title">
+              <span>🔍</span> Layer B — Cautious Inferences (Capped Confidence, Explicitly Labelled)
+            </div>
+            <div class="claims-list" id="dossier-layer-b-inferences">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+
+          <!-- Layer C: Explicit Unknowns -->
+          <div class="analysis-block">
+            <div class="block-title">
+              <span>❓</span> Layer C — Unknowns (System Does Not Guess Private Romantic Intent)
+            </div>
+            <ul class="needs-list" id="dossier-layer-c-unknowns">
+              <!-- Dynamically populated -->
+            </ul>
+          </div>
+
+          <!-- Layer D: Simulation Preferences -->
+          <div class="analysis-block">
+            <div class="block-title">
+              <span>🎯</span> Layer D — Preferences (Participant Provided / Demo Settings)
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+              <div>
+                <strong style="color: #34d399; font-size: 0.85rem;">Preferred Activities:</strong>
+                <div class="tags-container" id="dossier-pref-activities" style="margin-top: 0.4rem;"></div>
+              </div>
+              <div>
+                <strong style="color: #f87171; font-size: 0.85rem;">Avoided Activities:</strong>
+                <div class="tags-container" id="dossier-avoided-activities" style="margin-top: 0.4rem;"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Layer E: Behavioral Policy -->
+          <div class="analysis-block">
+            <div class="block-title">
+              <span>🛡️</span> Layer E — Behavioral Policy (System Prompt Constraints)
+            </div>
+            <div id="dossier-layer-e-rules" class="directive-prompt-code">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- TAB 3: VISUAL DATE SIMULATOR (THE SCENE)   -->
+    <!-- ========================================== -->
+    <section id="tab-date" class="tab-panel">
+      <div class="date-simulator-wrapper">
+
+        <!-- Date Controls Bar: Pairing & Venue Selector -->
+        <div class="date-controls-bar">
+          <div class="date-pairing-select">
+            <div>
+              <label style="font-size: 0.75rem; color: var(--text-muted); display: block; margin-bottom: 0.25rem;">AGENT A (PERSON 1)</label>
+              <select id="select-agent-a" class="custom-select"></select>
+            </div>
+            <div class="vs-badge">VS</div>
+            <div>
+              <label style="font-size: 0.75rem; color: var(--text-muted); display: block; margin-bottom: 0.25rem;">AGENT B (PERSON 2)</label>
+              <select id="select-agent-b" class="custom-select"></select>
+            </div>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+            <div>
+              <label style="font-size: 0.75rem; color: var(--text-muted); display: block; margin-bottom: 0.25rem;">DATE VENUE (PLANNED)</label>
+              <select id="select-venue" class="custom-select"></select>
+            </div>
+            <button id="btn-start-date" class="primary-btn" style="margin-top: 1rem;">
+              <span>🍸</span> Start Simulated Date
+            </button>
+          </div>
+        </div>
+
+        <!-- Venue Stage Ambient Banner (Venue Planner Output) -->
+        <div class="venue-stage-banner">
+          <div class="venue-details">
+            <div class="venue-tag-indicator" id="venue-badge">Dining & Intimate Banter</div>
+            <h3 id="venue-title">The Velvet Bistro & Hearth</h3>
+            <p id="venue-ambience">Warm candlelight, mahogany tables, soft acoustic background, open hearth fire.</p>
+            <div style="font-size: 0.8rem; color: var(--accent-gold); margin-top: 0.4rem;">
+              🥂 Featured drinks: <span id="venue-drinks">Smoked botanical cocktail, vintage Pinot Noir</span>
+            </div>
+            <div style="font-size: 0.75rem; color: #38bdf8; margin-top: 0.4rem;">
+              🤖 Scene Controller: <span id="venue-scene-id">restaurant_cozy_01</span> | Planner Formula: <code>0.5*Pref + 0.3*Suitability + 0.2*Diversity</code>
+            </div>
+          </div>
+
+          <!-- Dynamic Live Chemistry & Sync Gauges -->
+          <div class="live-gauges-cluster">
+            <div class="gauge-pill">
+              <div class="gauge-circle" id="gauge-chem" style="--gauge-pct: 78;">
+                <span id="val-gauge-chem">78%</span>
+              </div>
+              <div class="gauge-label">Interaction</div>
+            </div>
+            <div class="gauge-pill">
+              <div class="gauge-circle" id="gauge-humor" style="--gauge-pct: 85; background: conic-gradient(var(--accent-gold) calc(var(--gauge-pct, 85) * 1%), var(--bg-tertiary) 0);">
+                <span id="val-gauge-humor">85%</span>
+              </div>
+              <div class="gauge-label">Interests</div>
+            </div>
+            <div class="gauge-pill">
+              <div class="gauge-circle" id="gauge-intellect" style="--gauge-pct: 90; background: conic-gradient(var(--accent-cyan) calc(var(--gauge-pct, 90) * 1%), var(--bg-tertiary) 0);">
+                <span id="val-gauge-intellect">90%</span>
+              </div>
+              <div class="gauge-label">Balance</div>
+            </div>
+            <div class="gauge-pill">
+              <div class="gauge-circle" id="gauge-safety" style="--gauge-pct: 98; background: conic-gradient(var(--accent-emerald) calc(var(--gauge-pct, 98) * 1%), var(--bg-tertiary) 0);">
+                <span id="val-gauge-safety">98%</span>
+              </div>
+              <div class="gauge-label">Safety</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Visual Date Stage: 3D-Styled Scene Canvas -->
+        <div class="scene-visual-stage" id="scene-stage">
+          <div class="scene-overlay-label">
+            <span>● AI-GENERATED SIMULATION (NOT ACTUAL REAL-WORLD FOOTAGE)</span>
+          </div>
+
+          <!-- Side-by-side Avatars in Venue -->
+          <div class="stage-avatars-arena">
+            <div class="avatar-pod" id="pod-agent-a">
+              <img id="stage-avatar-a" class="stage-avatar-img" src="" alt="Agent A">
+              <div class="stage-avatar-name" id="stage-name-a">Steven</div>
+              <div class="stage-action-pill" id="stage-action-a">walk_to_table</div>
+            </div>
+            
+            <div class="table-prop-center">
+              <div class="table-candle">🕯️</div>
+              <div class="table-glass">🥂 🥂</div>
+            </div>
+
+            <div class="avatar-pod" id="pod-agent-b">
+              <img id="stage-avatar-b" class="stage-avatar-img" src="" alt="Agent B">
+              <div class="stage-avatar-name" id="stage-name-b">Priyanka</div>
+              <div class="stage-action-pill" id="stage-action-b">sit</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Date Dialogue Theater (Subtitles, Action Enums, Cognitive Monologue & Private Rating) -->
+        <div class="theater-container">
+          <div id="dialogue-stream" class="dialogue-stream">
+            <!-- Date conversation turns injected dynamically here -->
+          </div>
+
+          <!-- Real-Time User Whisper / Coach Mode -->
+          <div class="user-whisper-bar">
+            <span style="font-size: 1.2rem;">🤫</span>
+            <input 
+              type="text" 
+              id="input-user-whisper" 
+              class="whisper-input" 
+              placeholder="Coach your agent on the fly (e.g. 'Ask them about early entrepreneurship failures')..." 
+            />
+            <button id="btn-send-whisper" class="secondary-btn" style="padding: 0.5rem 1rem; font-size: 0.8rem;">
+              Send Whisper
+            </button>
+          </div>
+
+          <!-- Playback Controls -->
+          <div class="playback-controls">
+            <div style="display: flex; align-items: center; gap: 0.6rem;">
+              <span id="date-progress-indicator" style="font-size: 0.85rem; color: var(--text-secondary); font-family: var(--font-mono);">
+                Exchange 1 of 7
+              </span>
+            </div>
+
+            <div class="playback-buttons">
+              <button id="btn-prev-turn" class="secondary-btn">⏮️ Prev</button>
+              <button id="btn-next-turn" class="primary-btn" style="padding: 0.6rem 1.25rem;">
+                ▶️ Next Turn
+              </button>
+              <button id="btn-autoplay" class="secondary-btn">⏯️ Auto-Play</button>
+              <button id="btn-fast-forward" class="secondary-btn">⏩ End of Date</button>
+            </div>
+
+            <button id="btn-view-debrief" class="primary-btn" style="background: linear-gradient(135deg, var(--accent-gold), #d97706); display: none;">
+              🏆 View Directed Debrief & Rankings
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- TAB 4: DIRECTED DEBRIEF & 24-CANDIDATE RANK-->
+    <!-- ========================================== -->
+    <section id="tab-rankings" class="tab-panel">
+      <!-- Directed Debrief Modal / Card -->
+      <div id="debrief-container" class="debrief-report-box" style="display: none;">
+        <div class="debrief-verdict-banner">
+          <div id="debrief-verdict-badge" class="verdict-badge">RECOMMENDED: 2nd Date Greenlight</div>
+          <h2 id="debrief-verdict-title">Exceptional Chemistry & Mutual Grounding</h2>
+          <p id="debrief-score-subtitle" style="font-size: 1.1rem; color: var(--accent-gold); font-weight: 700; margin-top: 0.5rem;">
+            Adjusted Shrunk Score S_adj: 93% | Raw Score: 95% | Coverage c: 0.88
+          </p>
+        </div>
+
+        <div class="letters-grid">
+          <!-- Agent A Confidential Memo -->
+          <div class="letter-card">
+            <div class="letter-title">
+              <span>✉️</span> <span id="agent-a-letter-title">Agent A Directed Debrief</span>
+            </div>
+            <p id="agent-a-letter-text" class="letter-content">
+              Agent private evaluation to human...
+            </p>
+            <div class="flag-callout" style="border-left: 3px solid var(--accent-emerald);">
+              <strong style="color: #34d399;">Top Green Flag Noted:</strong>
+              <div id="agent-a-green-flag" style="color: var(--text-secondary); margin-top: 0.2rem;">Humility...</div>
+            </div>
+            <div class="flag-callout" style="border-left: 3px solid var(--accent-amber);">
+              <strong style="color: #fbbf24;">Watchout / Calibration:</strong>
+              <div id="agent-a-watchout" style="color: var(--text-secondary); margin-top: 0.2rem;">Schedule...</div>
+            </div>
+          </div>
+
+          <!-- Agent B Confidential Memo -->
+          <div class="letter-card">
+            <div class="letter-title">
+              <span>✉️</span> <span id="agent-b-letter-title">Agent B Directed Debrief</span>
+            </div>
+            <p id="agent-b-letter-text" class="letter-content">
+              Agent private evaluation to human...
+            </p>
+            <div class="flag-callout" style="border-left: 3px solid var(--accent-emerald);">
+              <strong style="color: #34d399;">Top Green Flag Noted:</strong>
+              <div id="agent-b-green-flag" style="color: var(--text-secondary); margin-top: 0.2rem;">Humility...</div>
+            </div>
+            <div class="flag-callout" style="border-left: 3px solid var(--accent-amber);">
+              <strong style="color: #fbbf24;">Watchout / Calibration:</strong>
+              <div id="agent-b-watchout" style="color: var(--text-secondary); margin-top: 0.2rem;">Schedule...</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 24-Candidate Match Rankings Table -->
+      <div class="section-title">
+        <div>
+          <h3><span>🏆</span> Complete Match Rankings for <span id="ranking-target-name" style="color: var(--accent-gold);">Steven Bartlett</span></h3>
+          <p style="font-size: 0.85rem; color: var(--text-secondary);">
+            Ranked by Bayesian shrunk compatibility score (S_adj). Evaluated against all 24 other cohort participants.
+          </p>
+        </div>
+        <div style="display: flex; gap: 0.8rem; align-items: center; flex-wrap: wrap;">
+          <label style="font-size: 0.8rem; color: var(--text-muted);">View Rankings For:</label>
+          <select id="select-ranking-agent" class="custom-select"></select>
+        </div>
+      </div>
+
+      <div style="overflow-x: auto;">
+        <table class="leaderboard-table">
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Candidate</th>
+              <th>Archetype</th>
+              <th>Shrunk Score (S_adj)</th>
+              <th>Confidence</th>
+              <th>Recommendation</th>
+              <th>Top Connection & Friction</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="rankings-table-body">
+            <!-- Rendered dynamically for all 24 candidates -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Scoring Formula Footnote -->
+      <div style="margin-top: 1.5rem; padding: 1rem; background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); font-size: 0.8rem; color: var(--text-muted);">
+        <strong style="color: var(--accent-gold);">Shrinkage Formula:</strong> 
+        <code>S_adj = c * S_raw + (1 - c) * Median(S_raw)</code> where <code>c</code> is coverage.
+        Weights: Shared Interests (30%), Stated Preferences (25%), Interaction Quality (30%), Respect & Balance (15%).
+        Simulated date rankings measure how configured agents interact; they do not predict real-world affection.
+      </div>
+    </section>
+
+  </main>
+
+  <script src="cohort_data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
